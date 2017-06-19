@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1cZ-pj-9NO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="fwu-1q-1oP">
+            <objects>
+                <viewController id="1cZ-pj-9NO" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qli-dW-Hae"/>
+                        <viewControllerLayoutGuide type="bottom" id="6h1-Pe-pHq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HBS-RN-OT1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="111.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U3k-Pr-927">
+                                <rect key="frame" x="20" y="28" width="92" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="444.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-3m-HLy">
+                                <rect key="frame" x="140" y="126" width="164" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" tag="5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="555.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PeM-XW-Kvo">
+                                <rect key="frame" x="20" y="330" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="333.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="18d-Vi-08c">
+                                <rect key="frame" x="16" y="149" width="100" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7a-mZ-vnu">
+                                <rect key="frame" x="81" y="509" width="118" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="清除缓存"/>
+                                <connections>
+                                    <action selector="clearCache" destination="1cZ-pj-9NO" eventType="touchUpInside" id="H6g-9Y-PLx"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="222.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6fi-Ly-eLV">
+                                <rect key="frame" x="136" y="28" width="124" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WuH-3v-gjF" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95" y="156"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="111.jpg" width="16" height="16"/>
+        <image name="222.jpg" width="16" height="16"/>
+        <image name="333.jpg" width="16" height="16"/>
+        <image name="444.jpg" width="16" height="16"/>
+        <image name="555.jpg" width="16" height="16"/>
+    </resources>
+</document>
