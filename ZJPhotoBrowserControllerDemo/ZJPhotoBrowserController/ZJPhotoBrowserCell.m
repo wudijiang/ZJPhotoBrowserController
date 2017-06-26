@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) ZJProgressView *progressView;
 @property (nonatomic, strong) UIButton *lookupBigImageButton;
+@property (nonatomic, weak) UIScrollView *observerScrollView;
 @end
 
 @implementation ZJPhotoBrowserCell
@@ -129,9 +130,13 @@
     }];
 }
 
+
+
 #pragma mark - private
 - (void)tapClick
 {
+    [self removeAllObserver];
+    
     if ([self.delegate respondsToSelector:@selector(photoBrowserCellWillHide:)]) {
         [self.delegate photoBrowserCellWillHide:self];
     }
@@ -254,6 +259,58 @@
         
     }
 }
+
+
+#warning kvo监听逻辑后期需要重新调整一下
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    ZJPhotoModel *model = self.model;
+    // 只有该按钮存在时才需要处理
+    if (model.hdUrl && ![model.hdUrl isEqualToString:model.url])
+    {
+        NSString *hdUrlKey = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:model.hdUrl]];
+        if (![[SDWebImageManager sharedManager].imageCache imageFromCacheForKey:hdUrlKey]) {
+            
+            UIScrollView *scrollView = self.observerScrollView;
+            
+            int a =  scrollView.contentOffset.x;
+            int b = scrollView.frame.size.width;
+            
+            BOOL  isStop = !(a % b);
+
+            [UIView animateWithDuration:0.2 animations:^{
+                self.lookupBigImageButton.alpha = isStop;
+            } completion:^(BOOL finished) {
+                self.lookupBigImageButton.hidden = !isStop;
+            }];
+        }
+    }
+    
+    
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    
+    // 如果不是UIScrollView，不做任何事情
+    if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
+    self.observerScrollView = (UIScrollView *)newSuperview;
+    [newSuperview addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)removeAllObserver
+{
+    // 移除监听者
+    id info = self.observerScrollView.observationInfo;
+    NSArray *array = [info valueForKey:@"_observances"];
+    for (id objc in array) {
+        id observer = [objc valueForKeyPath:@"_observer"];
+        [self.observerScrollView removeObserver:observer forKeyPath:@"contentOffset"];
+        
+    }
+}
+
 #pragma mark - getter
 - (UIScrollView *)scrollView
 {

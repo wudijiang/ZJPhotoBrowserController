@@ -671,6 +671,7 @@
 				1FB837CB1EF7DAE60079681B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FB837CC1EF7DAE60079681B /* Build configuration list for PBXNativeTarget "ZJPhotoBrowserControllerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -679,6 +680,7 @@
 				1FB837CE1EF7DAE60079681B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FB837CF1EF7DAE60079681B /* Build configuration list for PBXNativeTarget "ZJPhotoBrowserControllerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -687,6 +689,7 @@
 				1FB837D11EF7DAE60079681B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
