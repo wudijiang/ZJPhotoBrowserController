@@ -49,6 +49,8 @@
     
     self.statusBarState = [UIApplication sharedApplication].statusBarHidden;
     [UIApplication sharedApplication].statusBarHidden = YES;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -138,6 +140,40 @@
 - (void)photoBrowserCellWillHide:(ZJPhotoBrowserCell *)cell
 {
     [UIApplication sharedApplication].statusBarHidden = self.statusBarState;
+    
+//    return;
+    // 考虑可能会有nav及tab的情况
+    UIView *srcView = cell.model.srcView;
+    CGRect srcToWindowFrame = [srcView convertRect:srcView.bounds toView:nil];
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UIViewController *rootVC = keyWindow.rootViewController;
+    if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navVC = (UINavigationController *)rootVC;
+        UINavigationBar *navBar = navVC.navigationBar;
+        CGRect navBarToWindowFrame = [navBar convertRect:navBar.bounds toView:nil];
+        if (!CGRectIntersectsRect(srcToWindowFrame, navBarToWindowFrame)) {
+            return;
+        }
+        
+        [navVC.view insertSubview:self.view belowSubview:navBar];
+    } else if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabVC = (UITabBarController *)rootVC;
+        UINavigationController *navVC = tabVC.viewControllers[0];
+        
+        UITabBar *tabBar = tabVC.tabBar;
+        UINavigationBar *navBar = navVC.navigationBar;
+        CGRect navBarToWindowFrame = [navBar convertRect:navBar.bounds toView:nil];
+        CGRect tabBarToWindowFrame = [tabBar convertRect:tabBar.bounds toView:nil];
+        if (!CGRectIntersectsRect(srcToWindowFrame, navBarToWindowFrame) && !CGRectIntersectsRect(srcToWindowFrame, tabBarToWindowFrame)) {
+            return;
+        }
+        if (navVC) {
+            
+            [navVC.view insertSubview:self.view belowSubview:navVC.navigationBar];
+        } else {
+            [tabVC.view insertSubview:self.view belowSubview:tabVC.tabBar];
+        }
+    }
 }
 
 #pragma mark - getter

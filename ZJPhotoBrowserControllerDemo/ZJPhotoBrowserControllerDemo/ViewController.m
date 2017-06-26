@@ -40,12 +40,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
     for (int i = 1; i<=5; i++) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(browseImageView:)];
         UIImageView *imageView = [self.view viewWithTag:i];
         [imageView addGestureRecognizer:tap];
         
     }
+    
 }
 
 

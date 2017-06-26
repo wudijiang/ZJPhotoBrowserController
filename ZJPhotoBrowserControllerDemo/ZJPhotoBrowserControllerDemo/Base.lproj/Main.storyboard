@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="1cZ-pj-9NO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Cbk-Zj-UBZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,46 +21,143 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="111.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U3k-Pr-927">
-                                <rect key="frame" x="20" y="28" width="92" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="444.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-3m-HLy">
-                                <rect key="frame" x="140" y="126" width="164" height="196"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" tag="5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="555.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PeM-XW-Kvo">
-                                <rect key="frame" x="20" y="330" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="333.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="18d-Vi-08c">
-                                <rect key="frame" x="16" y="149" width="100" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7a-mZ-vnu">
-                                <rect key="frame" x="81" y="509" width="118" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="清除缓存"/>
-                                <connections>
-                                    <action selector="clearCache" destination="1cZ-pj-9NO" eventType="touchUpInside" id="H6g-9Y-PLx"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="222.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6fi-Ly-eLV">
-                                <rect key="frame" x="136" y="28" width="124" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-Aa-kic">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="444.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-3m-HLy">
+                                        <rect key="frame" x="143" y="95" width="164" height="196"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="164" id="4Cw-Fy-bsj"/>
+                                            <constraint firstAttribute="height" constant="196" id="G2n-If-oip"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="196" id="OvB-4Z-2c1"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="nS5-Eg-voQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="222.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6fi-Ly-eLV">
+                                        <rect key="frame" x="151" y="-77" width="149" height="95"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="95" id="WGk-1l-gxA"/>
+                                            <constraint firstAttribute="width" constant="149" id="XmI-lB-WkZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="333.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="18d-Vi-08c">
+                                        <rect key="frame" x="17" y="128" width="100" height="73"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="G7d-kh-2eU"/>
+                                            <constraint firstAttribute="height" constant="73" id="de6-92-APD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" tag="5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="555.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PeM-XW-Kvo">
+                                        <rect key="frame" x="8" y="322" width="231" height="88"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="231" id="dfq-8M-g2m"/>
+                                            <constraint firstAttribute="height" constant="88" id="t1I-AF-Xjz"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="111.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="U3k-Pr-927">
+                                        <rect key="frame" x="21" y="16" width="92" height="79"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="79" id="002-Mu-bbj"/>
+                                            <constraint firstAttribute="width" constant="92" id="wnJ-5U-MX4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7a-mZ-vnu">
+                                        <rect key="frame" x="214" y="418" width="118" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="118" id="7JA-ZM-b1Y"/>
+                                            <constraint firstAttribute="height" constant="39" id="UEe-DH-3hx"/>
+                                            <constraint firstAttribute="width" constant="118" id="XDW-zX-2Dm"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39" id="sLF-6M-K6O"/>
+                                        </constraints>
+                                        <state key="normal" title="清除缓存"/>
+                                        <connections>
+                                            <action selector="clearCache" destination="1cZ-pj-9NO" eventType="touchUpInside" id="H6g-9Y-PLx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="U3k-Pr-927" firstAttribute="top" secondItem="GL4-Aa-kic" secondAttribute="top" constant="80" id="3zY-fo-UHB"/>
+                                    <constraint firstAttribute="bottom" secondItem="g4o-3m-HLy" secondAttribute="bottom" constant="312" id="6jL-lE-inT"/>
+                                    <constraint firstItem="g4o-3m-HLy" firstAttribute="top" secondItem="6fi-Ly-eLV" secondAttribute="bottom" constant="77" id="7Zb-Wm-U8O"/>
+                                    <constraint firstItem="PeM-XW-Kvo" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="8" id="7hf-Mt-fXX"/>
+                                    <constraint firstItem="18d-Vi-08c" firstAttribute="top" secondItem="U3k-Pr-927" secondAttribute="bottom" constant="33" id="A79-Z7-uc8"/>
+                                    <constraint firstAttribute="trailing" secondItem="6fi-Ly-eLV" secondAttribute="trailing" constant="75" id="DDY-TQ-Bon"/>
+                                    <constraint firstItem="18d-Vi-08c" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="17" id="JfW-A6-3eP"/>
+                                    <constraint firstAttribute="bottom" secondItem="t7a-mZ-vnu" secondAttribute="bottom" constant="146" id="OyK-YU-ppc"/>
+                                    <constraint firstItem="g4o-3m-HLy" firstAttribute="leading" secondItem="18d-Vi-08c" secondAttribute="trailing" constant="26" id="PQF-ex-gqm"/>
+                                    <constraint firstItem="t7a-mZ-vnu" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="214" id="SQc-7O-5a5"/>
+                                    <constraint firstAttribute="bottom" secondItem="t7a-mZ-vnu" secondAttribute="bottom" constant="146" id="TnK-MQ-52t"/>
+                                    <constraint firstAttribute="trailing" secondItem="g4o-3m-HLy" secondAttribute="trailing" constant="68" id="VXj-eo-7mO"/>
+                                    <constraint firstAttribute="width" constant="375" id="X5G-en-915"/>
+                                    <constraint firstItem="U3k-Pr-927" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="21" id="cLM-sN-Zgk"/>
+                                    <constraint firstItem="g4o-3m-HLy" firstAttribute="top" secondItem="GL4-Aa-kic" secondAttribute="top" constant="159" id="dfw-2u-ISG"/>
+                                    <constraint firstAttribute="height" constant="667" id="fEC-Yr-krf"/>
+                                    <constraint firstItem="6fi-Ly-eLV" firstAttribute="top" secondItem="GL4-Aa-kic" secondAttribute="top" constant="-13" id="fI3-y3-HU8"/>
+                                    <constraint firstAttribute="bottom" secondItem="PeM-XW-Kvo" secondAttribute="bottom" constant="193" id="mtQ-Xa-hWn"/>
+                                    <constraint firstItem="t7a-mZ-vnu" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="214" id="vSB-eU-oHR"/>
+                                    <constraint firstAttribute="trailing" secondItem="g4o-3m-HLy" secondAttribute="trailing" constant="68" id="ydw-cT-2K8"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GL4-Aa-kic" firstAttribute="leading" secondItem="HBS-RN-OT1" secondAttribute="leading" id="7qw-e7-EPJ"/>
+                            <constraint firstAttribute="bottom" secondItem="GL4-Aa-kic" secondAttribute="bottom" id="8lq-41-OoY"/>
+                            <constraint firstAttribute="bottom" secondItem="GL4-Aa-kic" secondAttribute="bottom" id="ERw-9h-5yh"/>
+                            <constraint firstItem="GL4-Aa-kic" firstAttribute="top" secondItem="HBS-RN-OT1" secondAttribute="top" id="Nrf-jt-XHW"/>
+                            <constraint firstAttribute="trailing" secondItem="GL4-Aa-kic" secondAttribute="trailing" id="Pvq-Gf-7fP"/>
+                            <constraint firstAttribute="trailing" secondItem="GL4-Aa-kic" secondAttribute="trailing" id="bA6-2z-ffL"/>
+                            <constraint firstItem="GL4-Aa-kic" firstAttribute="leading" secondItem="HBS-RN-OT1" secondAttribute="leading" id="hmm-1t-oSR"/>
+                            <constraint firstItem="GL4-Aa-kic" firstAttribute="top" secondItem="HBS-RN-OT1" secondAttribute="top" id="kpD-XM-8Cg"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="UEM-EH-rn2"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="667"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WuH-3v-gjF" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95" y="156"/>
+            <point key="canvasLocation" x="3112.8000000000002" y="142.57871064467767"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="rPw-e0-HpF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3po-Ko-4fe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="OMJ-60-74Z"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZIl-T7-KHh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1cZ-pj-9NO" kind="relationship" relationship="rootViewController" id="jao-Qe-GmZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faL-h2-DqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1972" y="155.17241379310346"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="RUb-cQ-Q9g">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Cbk-Zj-UBZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="myx-TY-HZp">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="3po-Ko-4fe" kind="relationship" relationship="viewControllers" id="dhD-DN-FTf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1v-Pg-IQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1032.8" y="155.17241379310346"/>
         </scene>
     </scenes>
     <resources>

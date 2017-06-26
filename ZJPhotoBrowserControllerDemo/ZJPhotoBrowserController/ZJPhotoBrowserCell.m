@@ -2,7 +2,7 @@
 //  ZJPhotoBrowserCell.m
 //  test--图片浏览器
 //
-//  Created by 杨占江 on 15/6/29.
+//  Created by YZJ on 15/6/29.
 //  Copyright (c) 2015年 YZJ. All rights reserved.
 //
 
@@ -49,8 +49,8 @@
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.hdUrl] placeholderImage:model.image];
     } else if (model.url.length) {
         
-        // 如果url与高清大图url相同，则隐藏该按钮
-        self.lookupBigImageButton.hidden = [model.hdUrl isEqualToString:model.url];
+        // 如果hdUrl为空或者 url与高清大图url相同，则隐藏该按钮
+        self.lookupBigImageButton.hidden = !model.hdUrl.length || [model.hdUrl isEqualToString:model.url];
         
         // 这个判断的作用是 ：防止第一次弹出浏览器时加载环会闪现
          NSString *urlKey = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:model.url]];

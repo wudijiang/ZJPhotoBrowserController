@@ -2,7 +2,7 @@
 //  ZJProgressView.m
 //  ZJPhotoBrowserControllerDemo
 //
-//  Created by yangzhanjiang on 16/4/13.
+//  Created by YZJ on 16/4/13.
 //  Copyright © 2016年 YZJ. All rights reserved.
 //
 
@@ -56,7 +56,7 @@
     CGContextStrokePath(ctx);
     
     CGContextMoveToPoint(ctx, circleX, circleY);
-    CGContextAddArc(ctx, circleX, circleY, radius, -M_PI_2, -M_PI_2+M_PI*2*_progress, 0);
+    CGContextAddArc(ctx, circleX, circleY, radius, -M_PI_2, -M_PI_2+M_PI*2*_progress+0.3, 0);
     CGContextClosePath(ctx);
     // CGContextStrokePath(ctx);
     CGContextFillPath(ctx);
