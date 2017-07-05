@@ -56,7 +56,11 @@
     CGContextStrokePath(ctx);
     
     CGContextMoveToPoint(ctx, circleX, circleY);
-    CGContextAddArc(ctx, circleX, circleY, radius, -M_PI_2, -M_PI_2+M_PI*2*_progress+0.3, 0);
+    CGFloat endAngleChange = M_PI*2*_progress;
+    if (endAngleChange < 0.3) {
+        endAngleChange = 0.3;
+    }
+    CGContextAddArc(ctx, circleX, circleY, radius, -M_PI_2, -M_PI_2+endAngleChange, 0);
     CGContextClosePath(ctx);
     // CGContextStrokePath(ctx);
     CGContextFillPath(ctx);
