@@ -30,8 +30,9 @@
         NSDictionary *dict3 = @{@"image": [UIImage imageNamed:@"333"], @"url":@"http://piccdn.xingyun.cn/media/users/post/323/12/100201148299_3231263.jpg?imageMogr2/thumbnail/828.000000x", @"hdUrl":@"http://piccdn.xingyun.cn/media/users/post/323/12/100201148299_3231263.jpg"};
         NSDictionary *dict4 = @{@"image": [UIImage imageNamed:@"444"], @"url":@"http://piccdn.xingyun.cn/media/users/post/323/12/100201148299_3231264.jpg?imageMogr2/thumbnail/828.000000x", @"hdUrl":@"http://piccdn.xingyun.cn/media/users/post/323/12/100201148299_3231264.jpg"};
         NSDictionary *dict5 = @{@"image": [UIImage imageNamed:@"555"], @"url":@"http://piccdn.xingyun.cn/media/users/post/323/12/100201148299_3231265.jpg?imageMogr2/thumbnail/828.000000x", @"hdUrl":@"http://piccdn.xingyun.cn/media/users/post/323/12/100201148299_3231265.jpg"};
+        NSDictionary *dict6 = @{@"image": [UIImage imageNamed:@"666.gif"], @"url":@"http://i.zeze.com/attachment/forum/201608/26/141833fp6ett20ette6pc3.gif", @"hdUrl":@"http://i.zeze.com/attachment/forum/201608/26/141833fp6ett20ette6pc3.gif"};
         
-        NSMutableArray *mArray = [NSMutableArray arrayWithObjects:dict1, dict2, dict3,dict4, dict5, nil];
+        NSMutableArray *mArray = [NSMutableArray arrayWithObjects:dict1, dict2, dict3,dict4, dict5, dict6, nil];
         
         _imagesArray = mArray;
     }
@@ -41,9 +42,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    for (int i = 1; i<=5; i++) {
+    NSInteger count = self.imagesArray.count;
+    for (int i = 1; i<=count; i++) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(browseImageView:)];
         UIImageView *imageView = [self.view viewWithTag:i];
+        imageView.userInteractionEnabled = YES;
         [imageView addGestureRecognizer:tap];
         
     }

@@ -8,7 +8,10 @@
 
 #import "ZJPhotoBrowserCell.h"
 #import "UIImageView+WebCache.h"
+#import "UIView+WebCache.h"
 #import "ZJProgressView.h"
+#import "UIImageView+ZJ_Extension.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 #define maxZoomScale 4.0
 #define kAnimatedDuration 0.3
 
@@ -47,14 +50,14 @@
     if (model.hdUrl.length && [[SDWebImageManager sharedManager].imageCache imageFromCacheForKey:hdUrlKey]) {
         self.progressView.hidden = YES;
         self.lookupBigImageButton.hidden = YES;
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.hdUrl] placeholderImage:model.image];
+        [self.imageView zj_setImageWithURL:[NSURL URLWithString:model.hdUrl] placeholderImage:model.image];
     } else if (model.url.length) {
         
         // 如果hdUrl为空或者 url与高清大图url相同，则隐藏该按钮
         self.lookupBigImageButton.hidden = !model.hdUrl.length || [model.hdUrl isEqualToString:model.url];
         
         // 这个判断的作用是 ：防止第一次弹出浏览器时加载环会闪现
-         NSString *urlKey = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:model.url]];
+        NSString *urlKey = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:model.url]];
         if (![[SDWebImageManager sharedManager].imageCache imageFromCacheForKey:urlKey]) {
             self.progressView.hidden = NO;
             self.progressView.progress = 0;
@@ -62,7 +65,7 @@
             self.progressView.hidden = YES;
         }
         
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:model.image options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        [self.imageView zj_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:model.image options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (receivedSize >= 0 && expectedSize > 0) {
                     CGFloat progress = (CGFloat)receivedSize/expectedSize;
@@ -75,7 +78,7 @@
             self.scrollView.zoomScale = 1.0;
             [self setImageViewFrameByImageSize];
         }];
-
+        
     } else {
         self.lookupBigImageButton.hidden = YES;
     }
@@ -99,7 +102,7 @@
     centerY = scrollView.contentSize.height > scrollView.frame.size.height ? scrollView.contentSize.height/2 : centerY;
     
     self.imageView.center = CGPointMake(centerX, centerY);
-
+    
 }
 
 #pragma mark - publick
@@ -131,8 +134,7 @@
 }
 
 
-
-#pragma mark - private
+#pragma mark - 手势
 - (void)tapClick
 {
     [self removeAllObserver];
@@ -185,18 +187,57 @@
 
 - (void)longPress:(UILongPressGestureRecognizer *)press
 {
-   if (press.state == UIGestureRecognizerStateBegan) {
-    UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片", nil];
-    [sheet showInView:self];
-   }
+    if (press.state == UIGestureRecognizerStateBegan) {
+        UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片", nil];
+        [sheet showInView:self];
+    }
 }
 
+#pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil,nil);
+            
+            if (self.imageView.image.images) {
+                [self saveGifToAlbumWithUrl:self.model.hdUrl];
+               
+            } else {
+                UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil,nil);
+            }
+            
+            
         });
     }
+}
+
+#pragma mark - private
+/** 保存gif图 */
+- (void)saveGifToAlbumWithUrl:(NSString *)urlString
+{
+    NSURL *url = [NSURL URLWithString:urlString];
+    [[SDWebImageManager sharedManager] cachedImageExistsForURL:url completion:^(BOOL isInCache) {
+        
+        if (isInCache) {
+            NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:url];
+            if (cacheImageKey.length) {
+                NSString *cacheImagePath = [[SDWebImageManager sharedManager].imageCache defaultCachePathForKey:cacheImageKey];
+                if (cacheImagePath.length) {
+                    NSData *gifData = [NSData dataWithContentsOfFile:cacheImagePath];
+                    // 保存到本地相册
+                    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                    [library writeImageDataToSavedPhotosAlbum:gifData metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+                        
+                    }] ;
+                }
+            }
+        } else {
+            if ([urlString isEqualToString:self.model.url]) return ;
+            
+            [self saveGifToAlbumWithUrl:self.model.url];
+        }
+        
+    }];
+    
 }
 
 - (void)setImageViewFrameByImageSize
@@ -229,35 +270,34 @@
 
 - (void)lookupBigImageButtonClick:(UIButton *)button
 {
-
     button.hidden = YES;
     
     ZJPhotoModel *model = self.model;
-    if (model.hdUrl.length) {
-        self.progressView.hidden = NO;
-        self.progressView.progress = 0;
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.hdUrl] placeholderImage:self.imageView.image options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (receivedSize >= 0 && expectedSize > 0) {
-                    CGFloat progress = (CGFloat)receivedSize/expectedSize;
-                    self.progressView.progress = progress;
-                    NSLog(@"%f", progress);
-                }
-            });
-            
-            
-        } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            if (error) {
-                self.lookupBigImageButton.hidden = NO;
-                
+    
+    if (model.hdUrl.length == 0) return;
+    self.progressView.hidden = NO;
+    self.progressView.progress = 0;
+    [self.imageView zj_setImageWithURL:[NSURL URLWithString:model.hdUrl] placeholderImage:self.imageView.image options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (receivedSize >= 0 && expectedSize > 0) {
+                CGFloat progress = (CGFloat)receivedSize/expectedSize;
+                self.progressView.progress = progress;
+                NSLog(@"%f", progress);
             }
-            self.progressView.hidden = YES;
-            self.scrollView.zoomScale = 1.0;
-            [self setImageViewFrameByImageSize];
-            
-        }];
+        });
         
-    }
+        
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            self.lookupBigImageButton.hidden = NO;
+        }
+        self.progressView.hidden = YES;
+        self.scrollView.zoomScale = 1.0;
+        [self setImageViewFrameByImageSize];
+        
+    }];
+    
+    
 }
 
 
@@ -277,7 +317,7 @@
             int b = scrollView.frame.size.width;
             
             BOOL  isStop = !(a % b);
-
+            
             [UIView animateWithDuration:0.2 animations:^{
                 self.lookupBigImageButton.alpha = isStop;
             } completion:^(BOOL finished) {
@@ -381,8 +421,8 @@
         gradientLayer.startPoint = CGPointMake(0, 0);
         gradientLayer.endPoint = CGPointMake(0, 1);
         gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:0 green:178/255.0 blue:1.0 alpha:1.0].CGColor,
-                                      (__bridge id)[UIColor colorWithRed:52/255.0 green:86/255.0 blue:1.0 alpha:1.0].CGColor];
-
+                                 (__bridge id)[UIColor colorWithRed:52/255.0 green:86/255.0 blue:1.0 alpha:1.0].CGColor];
+        
         
     }
     return _lookupBigImageButton;

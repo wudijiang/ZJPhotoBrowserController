@@ -79,6 +79,13 @@
                                             <action selector="clearCache" destination="1cZ-pj-9NO" eventType="touchUpInside" id="H6g-9Y-PLx"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="666.gif" translatesAutoresizingMaskIntoConstraints="NO" id="cNC-QN-03F">
+                                        <rect key="frame" x="21" y="418" width="114" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="Kie-8H-z6d"/>
+                                            <constraint firstAttribute="height" constant="64" id="dLa-0I-Um4"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="U3k-Pr-927" firstAttribute="top" secondItem="GL4-Aa-kic" secondAttribute="top" constant="80" id="3zY-fo-UHB"/>
@@ -90,6 +97,7 @@
                                     <constraint firstItem="18d-Vi-08c" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="17" id="JfW-A6-3eP"/>
                                     <constraint firstAttribute="bottom" secondItem="t7a-mZ-vnu" secondAttribute="bottom" constant="146" id="OyK-YU-ppc"/>
                                     <constraint firstItem="g4o-3m-HLy" firstAttribute="leading" secondItem="18d-Vi-08c" secondAttribute="trailing" constant="26" id="PQF-ex-gqm"/>
+                                    <constraint firstItem="cNC-QN-03F" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="21" id="RTb-m8-qCc"/>
                                     <constraint firstItem="t7a-mZ-vnu" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="214" id="SQc-7O-5a5"/>
                                     <constraint firstAttribute="bottom" secondItem="t7a-mZ-vnu" secondAttribute="bottom" constant="146" id="TnK-MQ-52t"/>
                                     <constraint firstAttribute="trailing" secondItem="g4o-3m-HLy" secondAttribute="trailing" constant="68" id="VXj-eo-7mO"/>
@@ -99,6 +107,7 @@
                                     <constraint firstAttribute="height" constant="667" id="fEC-Yr-krf"/>
                                     <constraint firstItem="6fi-Ly-eLV" firstAttribute="top" secondItem="GL4-Aa-kic" secondAttribute="top" constant="-13" id="fI3-y3-HU8"/>
                                     <constraint firstAttribute="bottom" secondItem="PeM-XW-Kvo" secondAttribute="bottom" constant="193" id="mtQ-Xa-hWn"/>
+                                    <constraint firstItem="cNC-QN-03F" firstAttribute="top" secondItem="PeM-XW-Kvo" secondAttribute="bottom" constant="8" id="vLF-us-rBn"/>
                                     <constraint firstItem="t7a-mZ-vnu" firstAttribute="leading" secondItem="GL4-Aa-kic" secondAttribute="leading" constant="214" id="vSB-eU-oHR"/>
                                     <constraint firstAttribute="trailing" secondItem="g4o-3m-HLy" secondAttribute="trailing" constant="68" id="ydw-cT-2K8"/>
                                 </constraints>
@@ -148,6 +157,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Cbk-Zj-UBZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="myx-TY-HZp">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -166,5 +176,6 @@
         <image name="333.jpg" width="16" height="16"/>
         <image name="444.jpg" width="16" height="16"/>
         <image name="555.jpg" width="16" height="16"/>
+        <image name="666.gif" width="393" height="396"/>
     </resources>
 </document>

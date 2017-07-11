@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3A686C1F13647C003774D9 /* 666.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1F3A686B1F13647C003774D9 /* 666.gif */; };
+		1F3A686F1F137D55003774D9 /* UIImageView+ZJ_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3A686E1F137D55003774D9 /* UIImageView+ZJ_Extension.m */; };
 		1FB837A11EF7DAE60079681B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB837A01EF7DAE60079681B /* main.m */; };
 		1FB837A41EF7DAE60079681B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB837A31EF7DAE60079681B /* AppDelegate.m */; };
 		1FB837A71EF7DAE60079681B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB837A61EF7DAE60079681B /* ViewController.m */; };
@@ -58,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F3A686B1F13647C003774D9 /* 666.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 666.gif; sourceTree = "<group>"; };
+		1F3A686D1F137D55003774D9 /* UIImageView+ZJ_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZJ_Extension.h"; sourceTree = "<group>"; };
+		1F3A686E1F137D55003774D9 /* UIImageView+ZJ_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZJ_Extension.m"; sourceTree = "<group>"; };
 		1FB8379C1EF7DAE60079681B /* ZJPhotoBrowserControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJPhotoBrowserControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB837A01EF7DAE60079681B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1FB837A21EF7DAE60079681B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -179,6 +184,7 @@
 				1FB837A61EF7DAE60079681B /* ViewController.m */,
 				1FB837A81EF7DAE60079681B /* Main.storyboard */,
 				1FB837AB1EF7DAE60079681B /* Assets.xcassets */,
+				1F3A686B1F13647C003774D9 /* 666.gif */,
 				1FB837AD1EF7DAE60079681B /* LaunchScreen.storyboard */,
 				1FB837B01EF7DAE60079681B /* Info.plist */,
 				1FB8379F1EF7DAE60079681B /* Supporting Files */,
@@ -223,6 +229,8 @@
 				1FB837D81EF7DBEA0079681B /* ZJPhotoModel.m */,
 				1FB837D91EF7DBEA0079681B /* ZJProgressView.h */,
 				1FB837DA1EF7DBEA0079681B /* ZJProgressView.m */,
+				1F3A686D1F137D55003774D9 /* UIImageView+ZJ_Extension.h */,
+				1F3A686E1F137D55003774D9 /* UIImageView+ZJ_Extension.m */,
 			);
 			path = ZJPhotoBrowserController;
 			sourceTree = "<group>";
@@ -382,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FB837AF1EF7DAE60079681B /* LaunchScreen.storyboard in Resources */,
+				1F3A686C1F13647C003774D9 /* 666.gif in Resources */,
 				1FB837AC1EF7DAE60079681B /* Assets.xcassets in Resources */,
 				1FB837AA1EF7DAE60079681B /* Main.storyboard in Resources */,
 			);
@@ -414,6 +423,7 @@
 				1FB837DE1EF7DBEA0079681B /* ZJProgressView.m in Sources */,
 				1FB8380F1EF7DC830079681B /* SDWebImageDownloaderOperation.m in Sources */,
 				1FB838101EF7DC830079681B /* SDWebImageManager.m in Sources */,
+				1F3A686F1F137D55003774D9 /* UIImageView+ZJ_Extension.m in Sources */,
 				1FB838071EF7DC830079681B /* MKAnnotationView+WebCache.m in Sources */,
 				1FB837DD1EF7DBEA0079681B /* ZJPhotoModel.m in Sources */,
 				1FB8380E1EF7DC830079681B /* SDWebImageDownloader.m in Sources */,
