@@ -253,20 +253,27 @@
     CGFloat imageRH;
     //比例
     CGFloat rate;
-    if (imageOW/screenW > imageOH/screenH) {
-        rate = imageOW / screenW;
-        imageRW = screenW;
-        imageRH = imageOH / rate;
-    } else {
-        rate = imageOH / screenH;
-        imageRH = screenH;
-        imageRW = imageOW / rate;
+    //    if (imageOW/screenW > imageOH/screenH) {
+    //        rate = imageOW / screenW;
+    //        imageRW = screenW;
+    //        imageRH = imageOH / rate;
+    //    } else {
+    //        rate = imageOH / screenH;
+    //        imageRH = screenH;
+    //        imageRW = imageOW / rate;
+    //    }
+    rate = imageOW / screenW;
+    imageRW = screenW;
+    imageRH = imageOH / rate;
+    
+    self.imageView.frame = CGRectMake(0, 0, imageRW, imageRH);
+    if (imageRH < screenH) {
+        self.imageView.center = CGPointMake(screenW*0.5, screenH*0.5);
     }
     
-    self.imageView.bounds = CGRectMake(0, 0, imageRW, imageRH);
-    self.imageView.center = CGPointMake(screenW*0.5, screenH*0.5);
     self.scrollView.contentSize = CGSizeMake(imageRW, imageRH);
 }
+
 
 - (void)lookupBigImageButtonClick:(UIButton *)button
 {
