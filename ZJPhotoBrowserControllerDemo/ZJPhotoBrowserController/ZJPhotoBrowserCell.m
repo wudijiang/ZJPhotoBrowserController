@@ -120,21 +120,16 @@
         CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
         CGFloat screenH = [UIScreen mainScreen].bounds.size.height;
         self.imageView.center = CGPointMake(screenW*0.5, screenH*0.5);
-        
     }
     
-    
     [UIView animateWithDuration:kAnimatedDuration animations:^{
-        
-        //        self.controller.view.alpha = 1;
         self.controller.view.backgroundColor = [UIColor blackColor];
         [self setImageViewFrameByImageSize];
-        
     }];
 }
 
 
-#pragma mark - 手势
+#pragma mark - gesture
 - (void)tapClick
 {
     [self removeAllObserver];
@@ -170,7 +165,6 @@
         }];
     }
     
-    
 }
 
 - (void)doubleClick:(UIGestureRecognizer *)gesture
@@ -204,8 +198,6 @@
             } else {
                 UIImageWriteToSavedPhotosAlbum(self.imageView.image, nil, nil,nil);
             }
-            
-            
         });
     }
 }
@@ -248,23 +240,11 @@
     CGFloat screenH = [UIScreen mainScreen].bounds.size.height;
     CGFloat imageOW = self.imageView.image.size.width;
     CGFloat imageOH = self.imageView.image.size.height;
-    //图片显示区域的宽高
-    CGFloat imageRW;
-    CGFloat imageRH;
     //比例
-    CGFloat rate;
-    //    if (imageOW/screenW > imageOH/screenH) {
-    //        rate = imageOW / screenW;
-    //        imageRW = screenW;
-    //        imageRH = imageOH / rate;
-    //    } else {
-    //        rate = imageOH / screenH;
-    //        imageRH = screenH;
-    //        imageRW = imageOW / rate;
-    //    }
-    rate = imageOW / screenW;
-    imageRW = screenW;
-    imageRH = imageOH / rate;
+    CGFloat rate = imageOW / screenW;
+    //图片显示区域的宽高
+    CGFloat imageRW = screenW;
+    CGFloat imageRH = imageOH / rate;
     
     self.imageView.frame = CGRectMake(0, 0, imageRW, imageRH);
     if (imageRH < screenH) {
@@ -289,10 +269,9 @@
             if (receivedSize >= 0 && expectedSize > 0) {
                 CGFloat progress = (CGFloat)receivedSize/expectedSize;
                 self.progressView.progress = progress;
-                NSLog(@"%f", progress);
+                NSLog(@"下载进度  %f", progress);
             }
         });
-        
         
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (error) {
@@ -303,10 +282,7 @@
         [self setImageViewFrameByImageSize];
         
     }];
-    
-    
 }
-
 
 #warning kvo监听逻辑后期需要重新调整一下
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
@@ -332,8 +308,6 @@
             }];
         }
     }
-    
-    
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -354,7 +328,6 @@
     for (id objc in array) {
         id observer = [objc valueForKeyPath:@"_observer"];
         [self.observerScrollView removeObserver:observer forKeyPath:@"contentOffset"];
-        
     }
 }
 
@@ -429,7 +402,6 @@
         gradientLayer.endPoint = CGPointMake(0, 1);
         gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:0 green:178/255.0 blue:1.0 alpha:1.0].CGColor,
                                  (__bridge id)[UIColor colorWithRed:52/255.0 green:86/255.0 blue:1.0 alpha:1.0].CGColor];
-        
         
     }
     return _lookupBigImageButton;

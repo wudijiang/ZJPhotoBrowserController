@@ -10,15 +10,13 @@
 #import "SDWebImagePrefetcher.h"
 
 
-#define collectionID @"photoCell"
+#define kCollectionID @"photoCell"
 @interface ZJPhotoBrowserController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ZJPhotoBrowserCellDelegate>
 
 @property (nonatomic, weak) UICollectionView *collectionView;
-/**
- *  标题
- */
+/** 标题 */
 @property (nonatomic, weak) UILabel *titleLable;
-
+/** 状态栏显示状态 */
 @property (nonatomic, assign) BOOL statusBarState;
 
 @end
@@ -38,6 +36,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupUI];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self showPhotos];
+}
+
+- (void)setupUI
+{
     [self collectionView];
     
     if (self.photos.count <= 1) {
@@ -59,13 +68,6 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self showPhotos];
-}
-
-
 #pragma mark - Event
 - (void)show
 {
@@ -75,28 +77,20 @@
     //目的是消除动画问题
     //    self.view.alpha = 0;
     self.view.backgroundColor = [UIColor clearColor];
-    
-    
 }
 
 - (void)showPhotos
 {
-    //    //先滚动到指定的位置
-    
+    // 先滚动到指定的位置
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.index inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.002 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.collectionView.hidden = NO;
         ZJPhotoBrowserCell *cell = (ZJPhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.index inSection:0]];
         [cell showImageAnimated];
-        
         // 预下载图片
         [self prefetchDownloadImage];
     });
-    
-    
-    
 }
 // 预下载图片
 - (void)prefetchDownloadImage
@@ -126,7 +120,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZJPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionID forIndexPath:indexPath];
+    ZJPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCollectionID forIndexPath:indexPath];
     cell.model = self.photos[indexPath.row];
     cell.controller = self;
     cell.delegate = self;
@@ -139,7 +133,6 @@
 {
     int currentPage = scrollView.contentOffset.x/scrollView.frame.size.width + 1.5;
     self.titleLable.text = [NSString stringWithFormat:@"%d/%lu", currentPage, (unsigned long)self.photos.count];
-    
 }
 
 #pragma mark - ZJPhotoBrowserCellDelegate
@@ -174,7 +167,6 @@
             return;
         }
         if (navVC) {
-            
             [navVC.view insertSubview:self.view belowSubview:navVC.navigationBar];
         } else {
             [tabVC.view insertSubview:self.view belowSubview:tabVC.tabBar];
@@ -217,7 +209,7 @@
         collectionView.pagingEnabled = YES;
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        [collectionView registerClass:[ZJPhotoBrowserCell class] forCellWithReuseIdentifier:collectionID];
+        [collectionView registerClass:[ZJPhotoBrowserCell class] forCellWithReuseIdentifier:kCollectionID];
         self.collectionView = collectionView;
         [self.view addSubview:collectionView];
     }

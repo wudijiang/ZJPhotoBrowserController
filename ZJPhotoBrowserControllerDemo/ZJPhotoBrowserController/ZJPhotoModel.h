@@ -1,5 +1,5 @@
 //
-//  QFQPhotoModel.h
+//  ZJPhotoModel.h
 //  test--图片浏览器
 //
 //  Created by YZJ on 15/6/29.

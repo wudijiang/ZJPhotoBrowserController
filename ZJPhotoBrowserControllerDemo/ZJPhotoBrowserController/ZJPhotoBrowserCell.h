@@ -25,7 +25,7 @@
 @property (nonatomic, strong) ZJPhotoModel *model;
 
 @property (nonatomic, weak) id <ZJPhotoBrowserCellDelegate> delegate;
-
+/** 动画的展示出来 */
 - (void)showImageAnimated;
 
 @end
