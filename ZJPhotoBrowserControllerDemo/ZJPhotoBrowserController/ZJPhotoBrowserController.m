@@ -44,6 +44,12 @@
         self.titleLable.hidden = YES;
     } else {
         self.titleLable.hidden = NO;
+        NSString *text = [NSString stringWithFormat:@"%lu/%lu", (unsigned long)self.photos.count, (unsigned long)self.photos.count];
+        self.titleLable.text = text;
+        [self.titleLable sizeToFit];
+        CGFloat width = MAX(self.titleLable.frame.size.width+20, 60);
+        self.titleLable.bounds = CGRectMake(0, 0, width, 20);
+        self.titleLable.center = CGPointMake(self.view.center.x, 40);
         self.titleLable.text = [NSString stringWithFormat:@"1/%lu", (unsigned long)self.photos.count];
     }
     
