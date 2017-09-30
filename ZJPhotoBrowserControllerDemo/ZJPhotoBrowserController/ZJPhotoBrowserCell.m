@@ -7,8 +7,8 @@
 //
 
 #import "ZJPhotoBrowserCell.h"
-#import "UIImageView+WebCache.h"
-#import "UIView+WebCache.h"
+//#import "UIImageView+WebCache.h"
+//#import "UIView+WebCache.h"
 #import "ZJProgressView.h"
 #import "UIImageView+ZJ_Extension.h"
 #import <AssetsLibrary/AssetsLibrary.h>
